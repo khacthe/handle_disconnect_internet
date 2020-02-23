@@ -1,5 +1,6 @@
 # Handle Disconnect Internet
 
+![React App](https://user-images.githubusercontent.com/13729049/75121262-d8da8600-56c4-11ea-92c0-45e12fea9042.png)
 
 ## Available Scripts
 
