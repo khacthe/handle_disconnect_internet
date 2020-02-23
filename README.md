@@ -65,3 +65,67 @@ export default images;
 
 ```
 
+### Kiểm tra online or offline
+
+- Ý tưởng ở đây ta xây dựng một HOCs nhằm kiểm tra trạng thái kết nối internet, ở đây bạn có thể call đến 1 url nào đó để kiểm tra (ưu tiên trang cho kết quả load nhanh), sample: google.com
+
+```
+import React, { Component } from 'react';
+
+export default function (ComposedComponent) {
+  class Detect extends Component {
+    state = {
+      isDisconnected: false
+    }
+
+    componentDidMount() {
+      this.handleConnectionChange();
+      window.addEventListener('online', this.handleConnectionChange);
+      window.addEventListener('offline', this.handleConnectionChange);
+    }
+
+    componentWillUnmount() {
+      window.removeEventListener('online', this.handleConnectionChange);
+      window.removeEventListener('offline', this.handleConnectionChange);
+    }
+
+
+    handleConnectionChange = () => {
+      const condition = navigator.onLine ? 'online' : 'offline';
+      if (condition === 'online') {
+        const webPing = setInterval(
+          () => {
+            fetch('//google.com', {
+              mode: 'no-cors',
+              })
+            .then(() => {
+              this.setState({ isDisconnected: false }, () => {
+                return clearInterval(webPing)
+              });
+            }).catch(() => this.setState({ isDisconnected: true }) )
+          }, 2000);
+        return;
+      }
+
+      return this.setState({ isDisconnected: true });
+    }
+
+    render() {
+      const { isDisconnected } = this.state;
+      return (
+        <div>
+          { isDisconnected && (<div className="error">
+              <p>Không có kết nối internet</p>
+            </div>)
+          }
+          <ComposedComponent {...this.props} />
+        </div>
+      );
+    }
+  }
+
+  return Detect;
+}
+
+```
+
