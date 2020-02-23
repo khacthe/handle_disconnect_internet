@@ -161,3 +161,61 @@ export default Detect(App);
 ```
 
 - Mở page trên trình duyệt, tiến hành thực hiện disconect internet để kiểm tra kết quả.
+
+### CSS
+
+```
+.app {
+  text-align: center;
+}
+
+.app p {
+  font-size: 30px;
+}
+
+
+.error {
+  height: 60px;
+  background: #ff8100;
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.error p {
+  font-size: 25px;
+  line-height: 60px;
+  color: #fff;
+  margin: 0;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 0;
+}
+
+.image-list {
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: repeat(4, 1fr);
+  width: 1150px;
+  margin: 100px auto;
+}
+
+.image-list img {
+  max-width: 300px;
+  width: 100%;
+}
+
+.image:hover {
+  animation: animate-image 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes animate-image {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-1px, -2px) rotate(0deg); }
+}
+
+```
