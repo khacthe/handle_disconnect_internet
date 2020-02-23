@@ -1,5 +1,8 @@
 # Handle Disconnect Internet
 
+## Ý tưởng
+- Xây dựng một function nhằm kiểm tra việt kết nối internet của trang trong quá trình load page.
+
 ![React App](https://user-images.githubusercontent.com/13729049/75121262-d8da8600-56c4-11ea-92c0-45e12fea9042.png)
 
 ## Available Scripts
@@ -129,6 +132,8 @@ export default function (ComposedComponent) {
 }
 
 ```
+
+- window.online và window.offline nhận thấy sự thay đổi này và kích hoạt phương thức handleConnectionChange
 
 ### Render page
 - Ta render page từ thông qua App.js
